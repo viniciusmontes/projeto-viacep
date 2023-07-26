@@ -30,13 +30,19 @@ export function init() {
   state.errorCep = document.querySelector('[data-error="cep"]');
   state.errorNumber = document.querySelector('[data-error="number"]');
 
-  state.inputNumber.addEventListener("change", handleInputNumberChange);
+  state.inputNumber.addEventListener("keyup", handleInputNumberKeyup);
 
   state.btnClear.addEventListener("click", handleBtnClearClick);
   state.btnSave.addEventListener("click", handleBtnSaveClick);
 
   state.inputCep.addEventListener("change", handleInputCepChange);
+  state.inputNumber.addEventListener("change", handleInputNumberChange);
 }
+
+function handleInputNumberKeyup(event) {
+   state.address.number = event.target.value;
+}
+
 
 async function handleInputCepChange(event) {
   const cep = event.target.value;
@@ -60,7 +66,7 @@ async function handleInputCepChange(event) {
 async function handleBtnSaveClick(event) {
   event.preventDefault();
 
-  console.log(event.target);
+  console.log(state.address);
 }
 
 function handleInputNumberChange(event) {
